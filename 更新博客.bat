@@ -1,5 +1,5 @@
 @echo off
-echo 寮�濮嬫彁浜ゅ埌git....
+echo 开始提交到git....
 @echo on
  
 git add .
@@ -7,5 +7,5 @@ git commit -m 'updata'
 git push
  
 @echo off
-echo 鎺ㄩ�佸埌git鎴愬姛
+echo 推送到git成功
 pause
