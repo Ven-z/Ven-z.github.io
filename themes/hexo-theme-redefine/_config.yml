@@ -2,9 +2,9 @@
 #  Your basic info
 # ---------------------------------------------------------------------------------------
 base_info:
-  title: Theme Redefine # Site title
-  author: The Redefine Team # Author name
-  url: https://redefine.ohevan.com # Site url
+  title: Ven # Site title
+  author: Ven # Author name
+  url: https://ven-z.github.io # Site url
   # Logo image (You can use local image, image external link or don’t fill)
   logo_img: # logo image on the left of the navigation bar
 
@@ -57,15 +57,15 @@ style:
     progress_bar: # reading progress bar
       enable: true 
     percent: # reading progress percent
-      enable: false
+      enable: true
 
 # ---------------------------------------------------------------------------------------
 # Social contact link
 # ---------------------------------------------------------------------------------------
 social_contact: # social contact icons in the first screen, you can add more by using fontawesome icon names
-  enable: false 
+  enable: true 
   links:
-    github:  # your GitHub URL
+    github: https://github.com/Ven-z # your GitHub URL
     instagram: # your Instagram URL
     zhihu:  # your ZhiHu URL
     twitter:  # your twitter URL
@@ -79,9 +79,12 @@ menu: #you can customize, i18n files are in the theme's languages folder. fa-reg
   Home: 
     path: / 
     icon: fa-regular fa-house # can be empty
-  # Archives: 
-  #   path: /archives 
-  #   icon: fa-regular fa-archive # can be empty
+  Archives: 
+    path: /archives 
+    icon: fa-regular fa-archive # can be empty
+  Tags: 
+    path: /tags 
+    icon: fa-regular fa-tag # can be empty
   # Status: 
   #   path: https://status.evanluo.top/
   #   icon: fa-regular fa-chart-bar
@@ -235,7 +238,7 @@ lazyload:
 # CDN
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false
+  enable: true
 
 # ---------------------------------------------------------------------------------------
 # PJAX
