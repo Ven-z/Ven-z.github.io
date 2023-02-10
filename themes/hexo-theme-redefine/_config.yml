@@ -50,7 +50,7 @@ style:
     title_color:
       light: "#fff" # first screen title color (light mode)
       dark: "#d1d1b6" # first screen title color (dark mode)
-    description: Theme Redefine # the title in the middle of the first screen. HTML supported (e.g. svg html code of your logo)
+    description: Ven's Blog # the title in the middle of the first screen. HTML supported (e.g. svg html code of your logo)
 
   # Scroll style settings
   scroll:
@@ -133,7 +133,7 @@ post:
   # Author label
   author_label:
     enable: true
-    auto: false # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+    auto: true # if true, show Lv1, Lv2, Lv3... , If false, show custom label
     # label array item can be one or more
     custom_label_list: ["lol"]
 
@@ -183,7 +183,7 @@ website_count:
 # See: https://github.com/theme-next/hexo-generator-searchdb
 # ---------------------------------------------------------------------------------------
 local_search:
-  enable: false
+  enable: true
   preload: true # Preload the search data when the page loads
 
 # ---------------------------------------------------------------------------------------
@@ -281,3 +281,11 @@ inject:
 # Github: https://github.com/EvanNotFound/hexo-theme-redefine
 # ---------------------------------------------------------------------------------------
 version: 1.1.0
+
+# Search
+## See: https://github.com/theme-next/hexo-generator-searchdb
+search:
+  path: search.json
+  field: post
+  content: true
+  format: striptags
