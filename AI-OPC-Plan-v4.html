@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI+OPC 超级个体创业方案 v4.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --bg-card: #16161f;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --accent-primary: #00d4aa;
+            --accent-secondary: #00b894;
+            --accent-glow: rgba(0, 212, 170, 0.15);
+            --accent-orange: #ff6b35;
+            --accent-blue: #4ecdc4;
+            --accent-purple: #a855f7;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(0, 212, 170, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.08) 0%, transparent 40%),
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--accent-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-accent);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.1s backwards;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: block;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .policy-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .policy-table th,
+        .policy-table td {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .policy-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .policy-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .policy-table tr:hover td {
+            background: var(--bg-secondary);
+        }
+
+        .policy-table .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .track-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .track-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .track-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--bg-primary);
+        }
+
+        .track-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .track-formula {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .track-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .track-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .track-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .track-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .track-content li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .track-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        .tools-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .tools-table th,
+        .tools-table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+
+        .tools-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .tools-table td {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .tools-table .price {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+
+        .timeline-phase {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .costs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cost-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .cost-card.featured {
+            border-color: var(--accent-primary);
+            position: relative;
+        }
+
+        .cost-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .cost-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .cost-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .cost-year {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .cost-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .cost-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s;
+        }
+
+        .checklist li:hover {
+            border-color: var(--border-accent);
+        }
+
+        .checklist-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+        }
+
+        .checklist-text {
+            flex: 1;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-primary);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            margin-top: 4rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-version {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-meta {
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .track-card {
+                padding: 1.5rem;
+            }
+
+            .policy-table {
+                font-size: 0.85rem;
+            }
+
+            .policy-table th,
+            .policy-table td {
+                padding: 0.75rem;
+            }
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .income-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .income-table th,
+        .income-table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .income-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .income-table td {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .income-table .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-logo">AI+OPC <span>创业方案</span></div>
+        <ul class="nav-links">
+            <li><a href="#trend">趋势</a></li>
+            <li><a href="#policy">政策</a></li>
+            <li><a href="#tracks">赛道</a></li>
+            <li><a href="#execute">执行</a></li>
+            <li><a href="#costs">成本</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📋</span>
+                <span>杭州上城区专项政策 · 全国趋势分析</span>
+            </div>
+            <h1 class="hero-title">
+                AI+OPC 超级个体<br>
+                <span class="highlight">创业方案 v4.0</span>
+            </h1>
+            <p class="hero-subtitle">
+                一份可落地、可盈利、可复现的超级个体创业指南。聚焦8大黄金赛道，助你把握AI时代红利。
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-value">10亿</span>
+                    <span class="meta-label">创业基金</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value">2万㎡</span>
+                    <span class="meta-label">办公空间</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value">8条</span>
+                    <span class="meta-label">黄金赛道</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-value">70%+</span>
+                    <span class="meta-label">利润率</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="trend">
+        <div class="section-header fade-in">
+            <span class="section-number">01 / 趋势洞察</span>
+            <h2 class="section-title">为什么是现在？</h2>
+            <p class="section-desc">AI技术成熟 + 政策红利释放 = 超级个体创业最佳窗口期</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <div class="card-icon">🌍</div>
+                <h3 class="card-title">全球趋势</h3>
+                <p class="card-text">OPC模式从长三角到珠三角爆发式增长，政府抢滩布局，"半微专业+行业深度"成为新机会。</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">🇨🇳</div>
+                <h3 class="card-title">两会+十五五</h3>
+                <p class="card-text">AI+、智能经济、算电协同写入顶层设计，政策明确支持人工智能产业发展。</p>
+            </div>
+            <div class="card fade-in">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">真机会</h3>
+                <p class="card-text">不是"0门槛月入过万"，而是"半微专业+行业深度"的精准定位，可落地可持续。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="policy">
+        <div class="section-header fade-in">
+            <span class="section-number">02 / 政策支持</span>
+            <h2 class="section-title">全国政策热力图</h2>
+            <p class="section-desc">各地政府真金白银支持OPC创业，看看哪里力度最大</p>
+        </div>
+
+        <table class="policy-table fade-in">
+            <thead>
+                <tr>
+                    <th>地区</th>
+                    <th>定位</th>
+                    <th>特色政策</th>
+                    <th>最高支持</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="highlight">杭州上城</td>
+                    <td>OPC创业第一城</td>
+                    <td>10亿基金+2万㎡社区</td>
+                    <td>资金+空间+AI工具</td>
+                </tr>
+                <tr>
+                    <td>江苏</td>
+                    <td>OPC首选城市</td>
+                    <td>39条全链政策</td>
+                    <td>研发+算力+场景</td>
+                </tr>
+                <tr>
+                    <td>深圳</td>
+                    <td>AI硬件OPC</td>
+                    <td>全球首个硬件社区</td>
+                    <td>硬件+供应链</td>
+                </tr>
+                <tr>
+                    <td>上海临港</td>
+                    <td>超级个体288</td>
+                    <td>双零租金</td>
+                    <td>创业+居住</td>
+                </tr>
+                <tr>
+                    <td>济南</td>
+                    <td>数智生态OPC</td>
+                    <td>超级个体赋能</td>
+                    <td>培训+资源</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="track-card fade-in" style="margin-top: 3rem;">
+            <div class="track-header">
+                <div class="track-number">¥</div>
+                <h3 class="track-title">杭州上城区"OPC创业第一城"政策包</h3>
+            </div>
+            
+            <div class="track-section">
+                <div class="track-section-title">💰 资金支持</div>
+                <div class="track-content">
+                    <ul>
+                        <li>专项资金：1亿元/年</li>
+                        <li>OPC基金：10亿元（投早、投小、投硬科技）</li>
+                        <li>个人创业担保贷款：最高50万</li>
+                        <li>融资贴息：最高20万</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">🏢 空间保障</div>
+                <div class="track-content">
+                    <ul>
+                        <li>OPC社区：2万㎡+拎包入驻</li>
+                        <li>租期：最长3年低成本工位</li>
+                        <li>安居公寓：OPC人才驿站，3年梯度优惠</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">🤖 AI赋能</div>
+                <div class="track-content">
+                    <ul>
+                        <li>AI智能体工具会员：免费配发</li>
+                        <li>模型调用：即开即用、免审即享</li>
+                        <li>算力消耗：全额补贴</li>
+                        <li>高质量数据集：全区开放</li>
+                        <li>高阶模型调用名额：免费发放</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">📋 申请路径</div>
+                <div class="track-content">
+                    <pre><code>1. 注册OPC → 浙江政务网"全程网办"（最快半天）
+2. 申请入驻 → 联系上城区科技局/招商局
+3. 资格认定 → 获取"OPC社区"入驻资格
+4. 权益生效 → AI工具、空间、资金申请</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tracks">
+        <div class="section-header fade-in">
+            <span class="section-number">03 / 黄金赛道</span>
+            <h2 class="section-title">8大黄金赛道</h2>
+            <p class="section-desc">精选8个经过验证、可快速启动的创业方向</p>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">1</div>
+                <h3 class="track-title">AI+内容创作（自媒体）</h3>
+            </div>
+            <div class="track-formula">变现公式：流量→广告→带货→课程→社群</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>短视频平台变现效率较传统模式提升17%</li>
+                        <li>抖音创作者平均收益增长15.8%</li>
+                        <li>AI让内容生产效率提升10倍</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">收入预期</div>
+                <div class="track-content">
+                    <table class="income-table">
+                        <tr><th>阶段</th><th>粉丝量</th><th>月收入</th></tr>
+                        <tr><td>启动期</td><td>0-1000</td><td class="highlight">0-500</td></tr>
+                        <tr><td>成长期</td><td>1000-5000</td><td class="highlight">500-3000</td></tr>
+                        <tr><td>变现期</td><td>5000-1万</td><td class="highlight">3000-1万</td></tr>
+                        <tr><td>爆发期</td><td>1万+</td><td class="highlight">1万-5万</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">AI工具矩阵</div>
+                <div class="track-content">
+                    <table class="tools-table">
+                        <tr><th>用途</th><th>工具</th><th>费用</th></tr>
+                        <tr><td>文字</td><td>Claude + GPT</td><td class="price">$20+</td></tr>
+                        <tr><td>配图</td><td>Midjourney / 即梦 / 通义万相</td><td class="price">$30/免费</td></tr>
+                        <tr><td>视频</td><td>Seadance / 可灵 / 剪映</td><td class="price">免费/¥68</td></tr>
+                        <tr><td>配音</td><td>GPT-SoVITS / 11Labs</td><td class="price">免费/$5</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">2</div>
+                <h3 class="track-title">AI+软件开发（SaaS）</h3>
+            </div>
+            <div class="track-formula">变现公式：外包→产品→订阅→平台</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>AI让SaaS从工具提供转向价值创造</li>
+                        <li>结果导向定价成为新趋势</li>
+                        <li>小众垂直市场利润率极高</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">推荐方向及定价</div>
+                <div class="track-content">
+                    <table class="tools-table">
+                        <tr><th>方向</th><th>低价版</th><th>高级版</th><th>企业版</th></tr>
+                        <tr><td>AI聊天助手</td><td class="price">免费</td><td class="price">$9/月</td><td class="price">$99/月</td></tr>
+                        <tr><td>简历优化</td><td class="price">免费</td><td class="price">$19/月</td><td class="price">$199/月</td></tr>
+                        <tr><td>周报生成</td><td class="price">免费</td><td class="price">$9/月</td><td class="price">$99/月</td></tr>
+                        <tr><td>AI写作</td><td class="price">$9/月</td><td class="price">$29/月</td><td class="price">$299/月</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">成功案例</div>
+                <div class="track-content">
+                    <ul>
+                        <li>RoomGPT：6个月盈利16.8万美元，100万月访问量</li>
+                        <li>室内设计AI：6个月盈利16.8万美元</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">3</div>
+                <h3 class="track-title">AI+跨境电商</h3>
+            </div>
+            <div class="track-formula">变现公式：选品→上架→广告→复购</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>AI选品效率提升10倍</li>
+                        <li>AI生成商品图成本降50%</li>
+                        <li>一人可管理多店铺</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">推荐类目</div>
+                <div class="track-content">
+                    <table class="tools-table">
+                        <tr><th>类目</th><th>利润</th><th>竞争度</th><th>适合阶段</th></tr>
+                        <tr><td>家居收纳</td><td class="price">30-50%</td><td>中</td><td>新手</td></tr>
+                        <tr><td>宠物用品</td><td class="price">40-60%</td><td>中高</td><td>进阶</td></tr>
+                        <tr><td>3C配件</td><td class="price">20-40%</td><td>高</td><td>有经验</td></tr>
+                        <tr><td>运动户外</td><td class="price">35-55%</td><td>中</td><td>进阶</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">4</div>
+                <h3 class="track-title">AI+专业服务</h3>
+            </div>
+            <div class="track-formula">变现公式：咨询→模板→会员→培训</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>标准化服务可复制边际成本为零</li>
+                        <li>AI处理80%基础工作，人工聚焦高价值</li>
+                        <li>客单价高，复购率高</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">服务定价参考</div>
+                <div class="track-content">
+                    <table class="tools-table">
+                        <tr><th>服务类型</th><th>定价</th><th>客单价</th></tr>
+                        <tr><td>合同模板</td><td class="price">99-499元</td><td>低</td></tr>
+                        <tr><td>SOP流程</td><td class="price">299-999元</td><td>中</td></tr>
+                        <tr><td>1对1咨询</td><td class="price">500-5000元/次</td><td>高</td></tr>
+                        <tr><td>会员制</td><td class="price">1999-9999元/年</td><td>中</td></tr>
+                        <tr><td>企业服务</td><td class="price">3万-50万/项目</td><td>很高</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">5</div>
+                <h3 class="track-title">AI+教育培训</h3>
+            </div>
+            <div class="track-formula">变现公式：引流→低价→高价→私塾</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>AI课程制作效率提升10倍</li>
+                        <li>边际成本趋近于零</li>
+                        <li>利润可达70%+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">课程定价策略</div>
+                <div class="track-content">
+                    <table class="tools-table">
+                        <tr><th>课程类型</th><th>价格</th><th>目标人群</th></tr>
+                        <tr><td>电子书</td><td class="price">9-49元</td><td>入门</td></tr>
+                        <tr><td>录播课</td><td class="price">49-299元</td><td>初学者</td></tr>
+                        <tr><td>系统课</td><td class="price">299-999元</td><td>进阶</td></tr>
+                        <tr><td>训练营</td><td class="price">999-2999元</td><td>深度</td></tr>
+                        <tr><td>私塾</td><td class="price">9999元+</td><td>高端</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">成功案例</div>
+                <div class="track-content">
+                    <ul>
+                        <li>Dan Koe：年收入500万美元，利润率98%</li>
+                        <li>付费课程《Modern Money》首月5万美元</li>
+                        <li>会员社区"The Almanac"年费近400万美元</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">6</div>
+                <h3 class="track-title">AI+数字产品</h3>
+            </div>
+            <div class="track-formula">变现公式：创作→上架→销售→复购</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么能赚钱</div>
+                <div class="track-content">
+                    <ul>
+                        <li>虚拟产品无成本，卖多少赚多少</li>
+                        <li>AI生成效率高，可批量生产</li>
+                        <li>被动收入</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">产品类型</div>
+                <div class="track-content">
+                    <ul>
+                        <li>AI绘画：头像/壁纸9.9-49.9元，商业海报200-2000元</li>
+                        <li>数字模板：Notion模板39-399元，PPT模板29-299元</li>
+                        <li>Prompt提示词：19-199元</li>
+                        <li>定制服务：LOGO设计200-2000元，插画500-5000元</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">7</div>
+                <h3 class="track-title">AI+智能硬件</h3>
+            </div>
+            <div class="track-formula">变现公式：设计→生产→销售→品牌</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么火</div>
+                <div class="track-content">
+                    <ul>
+                        <li>深圳成立全球首个AI硬件OPC社区</li>
+                        <li>智能眼镜、耳机、机器人赛道爆发</li>
+                        <li>阿里Qwen智能眼镜MWC 2026发布</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">细分领域</div>
+                <div class="track-content">
+                    <ul>
+                        <li>智能配件：耳机、手表、眼镜</li>
+                        <li>AR/VR：轻量级AR设备</li>
+                        <li>小型机器人：教育/陪伴</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">8</div>
+                <h3 class="track-title">AI+自动化服务</h3>
+            </div>
+            <div class="track-formula">变现公式：场景→工作流→订阅→定制</div>
+            
+            <div class="track-section">
+                <div class="track-section-title">为什么火</div>
+                <div class="track-content">
+                    <ul>
+                        <li>企业数字化转型需求大</li>
+                        <li>n8n/Zapier自动化工具普及</li>
+                        <li>按结果收费模式兴起</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="track-section">
+                <div class="track-section-title">定价模式</div>
+                <div class="track-content">
+                    <ul>
+                        <li>订阅制：99-999元/月</li>
+                        <li>按次收费：10-100元/次</li>
+                        <li>定制服务：5000-50000元/项目</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="execute">
+        <div class="section-header fade-in">
+            <span class="section-number">04 / 落地执行</span>
+            <h2 class="section-title">执行路线图</h2>
+            <p class="section-desc">12个月从0到100万的详细执行计划</p>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">1</div>
+                <h3 class="track-title">第1个月：启动期</h3>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">第1周</div>
+                    <div class="timeline-title">自我定位+赛道选择</div>
+                    <div class="timeline-desc">用AI分析优势，确定1个方向，产出赛道确定</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第2周</div>
+                    <div class="timeline-title">注册OPC+开通工具</div>
+                    <div class="timeline-desc">政务网办理，开通AI账号，产出营业执照+工具矩阵</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第3周</div>
+                    <div class="timeline-title">产出第一个产品/内容</div>
+                    <div class="timeline-desc">打磨MVP，产出可测试版本</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第4周</div>
+                    <div class="timeline-title">小范围测试</div>
+                    <div class="timeline-desc">找10人试用，产出验证需求</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">2</div>
+                <h3 class="track-title">第2-3个月：验证期</h3>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">第5-6周</div>
+                    <div class="timeline-title">商业模式验证</div>
+                    <div class="timeline-desc">确认盈利模式</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第7-8周</div>
+                    <div class="timeline-title">AI工作流优化</div>
+                    <div class="timeline-desc">效率提升50%</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第9-10周</div>
+                    <div class="timeline-title">私域搭建</div>
+                    <div class="timeline-desc">沉淀1000+用户</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第11-12周</div>
+                    <div class="timeline-title">规模化测试</div>
+                    <div class="timeline-desc">收入破万</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">3</div>
+                <h3 class="track-title">第4-6个月：增长期</h3>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">第4月</div>
+                    <div class="timeline-title">获客规模化</div>
+                    <div class="timeline-desc">目标：月入3万</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第5月</div>
+                    <div class="timeline-title">变现优化</div>
+                    <div class="timeline-desc">目标：月入5万</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">第6月</div>
+                    <div class="timeline-title">自动化</div>
+                    <div class="timeline-desc">目标：减少手动操作</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="track-card fade-in">
+            <div class="track-header">
+                <div class="track-number">4</div>
+                <h3 class="track-title">第7-12个月：规模化</h3>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-phase">7-9月</div>
+                    <div class="timeline-title">ARR破50万</div>
+                    <div class="timeline-desc">年收入目标：50万+</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">10-11月</div>
+                    <div class="timeline-title">建立壁垒</div>
+                    <div class="timeline-desc">构建竞争护城河</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-phase">12月</div>
+                    <div class="timeline-title">规划融资/退出</div>
+                    <div class="timeline-desc">资本化路径规划</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="costs">
+        <div class="section-header fade-in">
+            <span class="section-number">05 / 成本收益</span>
+            <h2 class="section-title">启动成本与收益预期</h2>
+            <p class="section-desc">三个版本，总有一款适合你</p>
+        </div>
+
+        <div class="costs-grid fade-in">
+            <div class="cost-card">
+                <h3 class="cost-title">轻量版</h3>
+                <div class="cost-price">500<span>/月</span></div>
+                <div class="cost-year">年成本约6000元</div>
+                <ul class="cost-list">
+                    <li><span>AI工具订阅</span><span>200元</span></li>
+                    <li><span>服务器/域名</span><span>100元</span></li>
+                    <li><span>设计工具</span><span>50元</span></li>
+                    <li><span>付费课程</span><span>100元</span></li>
+                    <li><span>其他</span><span>50元</span></li>
+                </ul>
+            </div>
+
+            <div class="cost-card featured">
+                <h3 class="cost-title">标准版</h3>
+                <div class="cost-price">1,700<span>/月</span></div>
+                <div class="cost-year">年成本约20000元</div>
+                <ul class="cost-list">
+                    <li><span>AI工具订阅</span><span>500元</span></li>
+                    <li><span>服务器/域名</span><span>200元</span></li>
+                    <li><span>设计工具</span><span>100元</span></li>
+                    <li><span>付费课程</span><span>300元</span></li>
+                    <li><span>推广费</span><span>500元</span></li>
+                    <li><span>其他</span><span>100元</span></li>
+                </ul>
+            </div>
+
+            <div class="cost-card">
+                <h3 class="cost-title">进阶版</h3>
+                <div class="cost-price">4,500<span>/月</span></div>
+                <div class="cost-year">年成本约54000元</div>
+                <ul class="cost-list">
+                    <li><span>AI工具订阅</span><span>1000元</span></li>
+                    <li><span>服务器/域名</span><span>500元</span></li>
+                    <li><span>设计工具</span><span>200元</span></li>
+                    <li><span>付费课程</span><span>500元</span></li>
+                    <li><span>推广费</span><span>2000元</span></li>
+                    <li><span>其他</span><span>300元</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="track-card fade-in" style="margin-top: 3rem;">
+            <div class="track-header">
+                <div class="track-number">💰</div>
+                <h3 class="track-title">收益预期</h3>
+            </div>
+            <div class="track-content">
+                <table class="income-table">
+                    <tr><th>阶段</th><th>月收入</th><th>年收入</th><th>利润率</th></tr>
+                    <tr><td>启动期</td><td class="highlight">0-3000</td><td>-</td><td>-</td></tr>
+                    <tr><td>验证期</td><td class="highlight">3000-1万</td><td>5-10万</td><td>50%</td></tr>
+                    <tr><td>增长期</td><td class="highlight">1-5万</td><td>20-50万</td><td>70%</td></tr>
+                    <tr><td>规模化</td><td class="highlight">5万+</td><td>100万+</td><td>80%</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="checklist">
+        <div class="section-header fade-in">
+            <span class="section-number">06 / 行动清单</span>
+            <h2 class="section-title">本周行动清单</h2>
+            <p class="section-desc">立即执行这6件事，开启你的OPC创业之路</p>
+        </div>
+
+        <ul class="checklist fade-in">
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>用AI完成自我分析</strong><br>
+                    <span style="color: var(--text-muted);">提示词："我擅长什么？市场需要什么？"</span>
+                </div>
+            </li>
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>确定1个赛道</strong><br>
+                    <span style="color: var(--text-muted);">不要超过2个，聚焦才能成功</span>
+                </div>
+            </li>
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>注册OPC</strong><br>
+                    <span style="color: var(--text-muted);">浙江政务网"全程网办"，最快半天</span>
+                </div>
+            </li>
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>开通必要AI工具账号</strong><br>
+                    <span style="color: var(--text-muted);">Claude、GPT、Midjourney等</span>
+                </div>
+            </li>
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>产出第一个"作品"</strong><br>
+                    <span style="color: var(--text-muted);">可以是内容、产品或服务demo</span>
+                </div>
+            </li>
+            <li>
+                <div class="checklist-icon">□</div>
+                <div class="checklist-text">
+                    <strong>发布到至少1个平台</strong><br>
+                    <span style="color: var(--text-muted);">小红书、抖音、知乎、B站等</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="track-card fade-in" style="margin-top: 2rem;">
+            <div class="track-header">
+                <div class="track-number">🚀</div>
+                <h3 class="track-title">快速启动提示词</h3>
+            </div>
+            <div class="track-content">
+                <pre><code>帮我分析：
+"我想做[方向]，擅长[背景]，请帮我：
+1. 最适合的细分定位
+2. 前10个爆款选题
+3. 变现路径
+4. 竞品分析"</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="section-header fade-in">
+            <span class="section-number">07 / 常见问题</span>
+            <h2 class="section-title">FAQ</h2>
+        </div>
+
+        <div class="faq-item fade-in">
+            <div class="faq-question">Q：没有技能怎么办？</div>
+            <div class="faq-answer">A：从内容创作开始，边学边做。AI降低了所有门槛，不需要专业技能也能产出高质量内容。</div>
+        </div>
+
+        <div class="faq-item fade-in">
+            <div class="faq-question">Q：需要辞职吗？</div>
+            <div class="faq-answer">A：先兼职测试，验证后再决定。建议9死1生vs 9生1死的策略——先保证生存，再追求发展。</div>
+        </div>
+
+        <div class="faq-item fade-in">
+            <div class="faq-question">Q：多久能赚钱？</div>
+            <div class="faq-answer">A：最快1周（有案例），通常1-3个月。关键在于立即行动和持续迭代。</div>
+        </div>
+
+        <div class="faq-item fade-in">
+            <div class="faq-question">Q：5000够吗？</div>
+            <div class="faq-answer">A：轻量版足够。赚钱后再升级设备和服务。初期的重点是验证商业模式，而非追求完美。</div>
+        </div>
+    </section>
+
+    <section class="section" id="resources">
+        <div class="section-header fade-in">
+            <span class="section-number">08 / 资源汇总</span>
+            <h2 class="section-title">资源入口</h2>
+            <p class="section-desc">政策入口、学习平台、社群推荐</p>
+        </div>
+
+        <div class="resource-grid fade-in">
+            <div class="resource-card">
+                <div class="resource-title">🏛️ 政策入口</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">浙江政务网</p>
+                <a href="https://www.zjzwfw.gov.cn" target="_blank" class="resource-link">www.zjzwfw.gov.cn →</a>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 1rem 0 0.5rem;">杭州上城区</p>
+                <span style="color: var(--text-muted); font-size: 0.85rem;">上城发布公众号</span>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-title">📚 学习平台</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">推荐资源</p>
+                <ul style="color: var(--text-muted); font-size: 0.85rem; list-style: none;">
+                    <li>• ClawHub技能市场</li>
+                    <li>• AI研究所</li>
+                    <li>• 人人都是产品经理</li>
+                </ul>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-title">👥 社群</div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">创业者社群</p>
+                <ul style="color: var(--text-muted); font-size: 0.85rem; list-style: none;">
+                    <li>• 杭州OPC创业者社群</li>
+                    <li>• 生财有术</li>
+                    <li>• AI创业交流群</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-text">
+            方案制作：小智 🦞 · 日期：2026年3月 · 版本：<span class="footer-version">v4.0 详细实操版</span>
+        </p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
